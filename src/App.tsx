@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { Dispatch } from 'redux'
+import { fetchDataSuccess, FetchDataSuccessAction } from './redux/actions'
+import { AppState } from './redux/reducers' // Import the AppState type
+import productData from './utils/productData'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type AppProps = PropsFromRedux
+
+const App: React.FC<AppProps> = ({ data, fetchDataSuccess }) => {
+  useEffect(() => {
+    // Use productData instead of mockData
+    const mockData = productData
+    fetchDataSuccess(mockData)
+  }, [fetchDataSuccess])
+
+  // Render your root component using the data from the Redux store
+  return <div>{/* Your root component rendering logic */}</div>
 }
 
-export default App;
+const mapStateToProps = (state: AppState) => ({
+  data: state.data,
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<FetchDataSuccessAction>) => ({
+  fetchDataSuccess: (data: any[]) => dispatch(fetchDataSuccess(data)),
+})
+
+// Connect your root component to Redux using the connect function
+const connector = connect(mapStateToProps, mapDispatchToProps)
+
+// Create a type representing props from the Redux store
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+// Export your connected root component
+export default connector(App)
