@@ -2,16 +2,25 @@
 import React from 'react'
 
 interface ProductCardProps {
-  product: any // Adjust the type according to your data structure
+  product: {
+    title: string
+    image: string
+    subtitle: string
+    tags: string[]
+  }
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  // Implement the ProductCard UI using the provided data
   return (
     <div className="product-card">
-      {/* Display product information */}
-      <h2>{product.title}</h2>
-      {/* Add more details as needed */}
+      <img src={product.image} alt={product.title} />
+      <h3>{product.title}</h3>
+      <p>{product.subtitle}</p>
+      <ul>
+        {product.tags.map((tag, index) => (
+          <li key={index}>{tag}</li>
+        ))}
+      </ul>
     </div>
   )
 }

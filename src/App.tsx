@@ -1,37 +1,75 @@
 // src/App.tsx
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Dispatch } from 'redux'
 import { fetchDataSuccess, FetchDataSuccessAction } from './redux/actions'
-import { AppState } from './redux/reducers' // Import the AppState type
-import productData from './utils/productData'
+import { AppState } from './redux/reducers'
+import ProductCard from './components/ProductCard'
+import mockApi from './utils/mockApi'
+import { Product, Sales } from './utils/productData'
+import Graph from './components/Graph'
+import Table from './components/Table'
+import { Dispatch } from 'redux'
+import './App.css'
 
-type AppProps = PropsFromRedux
+type AppProps = PropsFromRedux & {
+  // Add any other props your component expects
+}
 
-const App: React.FC<AppProps> = ({ data, fetchDataSuccess }) => {
+const App: React.FC<AppProps> = ({ productData, fetchDataSuccess }) => {
+  const [salesData, setSalesData] = useState<Sales[]>([])
+
   useEffect(() => {
-    // Use productData instead of mockData
-    const mockData = productData
-    fetchDataSuccess(mockData)
+    const fetchData = async () => {
+      try {
+        const result = await mockApi.fetchProductData()
+        fetchDataSuccess(result)
+        const extractedSalesData = result.flatMap((product) => product.sales)
+        setSalesData(extractedSalesData)
+      } catch (error) {
+        console.error('Error fetching product data:', error)
+      }
+    }
+
+    fetchData()
   }, [fetchDataSuccess])
 
-  // Render your root component using the data from the Redux store
-  return <div>{/* Your root component rendering logic */}</div>
+  return (
+    <div className="app">
+      {/* Header with Stackline logo */}
+      <header className="app-header">
+        <img src="/stackline_logo.svg" alt="Stackline Logo" />
+      </header>
+
+      {/* Main content layout */}
+      <div className="main-content">
+        {/* Left section with ProductCard */}
+        <div className="left-section">
+          {productData.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
+
+        {/* Right section with Graph and Table */}
+        <div className="right-section">
+          {/* Graph component */}
+          <Graph data={salesData} />
+
+          {/* Table component */}
+          <Table salesData={salesData} />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 const mapStateToProps = (state: AppState) => ({
-  data: state.data,
+  productData: state.data.data,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<FetchDataSuccessAction>) => ({
   fetchDataSuccess: (data: any[]) => dispatch(fetchDataSuccess(data)),
 })
 
-// Connect your root component to Redux using the connect function
 const connector = connect(mapStateToProps, mapDispatchToProps)
-
-// Create a type representing props from the Redux store
 type PropsFromRedux = ConnectedProps<typeof connector>
-
-// Export your connected root component
 export default connector(App)
