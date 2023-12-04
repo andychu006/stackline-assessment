@@ -1,38 +1,38 @@
 // src/App.tsx
-import React, { useEffect, useState } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { fetchDataSuccess, FetchDataSuccessAction } from './redux/actions'
-import { AppState } from './redux/reducers'
-import ProductCard from './components/ProductCard'
-import mockApi from './utils/mockApi'
-import { Product, Sales } from './utils/productData'
-import Graph from './components/Graph'
-import Table from './components/Table'
-import { Dispatch } from 'redux'
-import './App.css'
-import { colors } from './constants/styles'
+import React, { useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { fetchDataSuccess, FetchDataSuccessAction } from "./redux/actions";
+import { AppState } from "./redux/reducers";
+import ProductCard from "./components/ProductCard";
+import mockApi from "./utils/mockApi";
+import { Product, Sales } from "./utils/productData";
+import Graph from "./components/Graph";
+import Table from "./components/Table";
+import { Dispatch } from "redux";
+import "./App.css";
+import { colors } from "./constants/styles";
 
 type AppProps = PropsFromRedux & {
   // Add any other props your component expects
-}
+};
 
 const App: React.FC<AppProps> = ({ productData, fetchDataSuccess }) => {
-  const [salesData, setSalesData] = useState<Sales[]>([])
+  const [salesData, setSalesData] = useState<Sales[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await mockApi.fetchProductData()
-        fetchDataSuccess(result)
-        const extractedSalesData = result.flatMap((product) => product.sales)
-        setSalesData(extractedSalesData)
+        const result = await mockApi.fetchProductData();
+        fetchDataSuccess(result);
+        const extractedSalesData = result.flatMap((product) => product.sales);
+        setSalesData(extractedSalesData);
       } catch (error) {
-        console.error('Error fetching product data:', error)
+        console.error("Error fetching product data:", error);
       }
-    }
+    };
 
-    fetchData()
-  }, [fetchDataSuccess])
+    fetchData();
+  }, [fetchDataSuccess]);
 
   return (
     <div className="app">
@@ -81,17 +81,17 @@ const App: React.FC<AppProps> = ({ productData, fetchDataSuccess }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state: AppState) => ({
   productData: state.data.data,
-})
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<FetchDataSuccessAction>) => ({
-  fetchDataSuccess: (data: any[]) => dispatch(fetchDataSuccess(data)),
-})
+  fetchDataSuccess: (data: Product[]) => dispatch(fetchDataSuccess(data)),
+});
 
-const connector = connect(mapStateToProps, mapDispatchToProps)
-type PropsFromRedux = ConnectedProps<typeof connector>
-export default connector(App)
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export default connector(App);

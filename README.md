@@ -1,46 +1,96 @@
-# Getting Started with Create React App
+# Stackline Frontend Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project provides a foundation for the Stackline Frontend Assessment, utilizing React for the view and Redux for state management. The project structure, features, and dependencies are outlined below.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clone the repository to your local machine:
 
-### `npm start`
+   ```bash
+   git clone https://github.com/andychu006/stackline-assessment.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Navigate to the project directory:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   ```bash
+   cd stackline-assessment
+   ```
 
-### `npm test`
+3. Install the dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+## Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **src**: Contains the source code for the project.
+- **public**: Static assets, including the wire mockup and Stackline logo SVG.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Run the project locally: `npm start`
+2. Open your browser and go to [http://localhost:3000](http://localhost:3000)
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Implement either a graph or a table (or both) based on the provided wire mockup.
+- Fetch and display data from the provided JSON file through a mock API call.
+- Utilize React and Redux best practices and patterns for state management.
+- Maintain a codebase that is clean and easy to follow.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Nice-to-Haves
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Consider using TypeScript for enhanced type safety.
+- Explore the use of functional components for improved code readability.
+- Optionally add extra functionality to the graph or table, such as sorting and overlays.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
 
-## Learn More
+If you'd like to contribute to this project, please follow these guidelines:
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add feature-name'`
+4. Push to the branch: `git push origin feature-name`
+5. Create a pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **build**: Build the project using `react-scripts`.
+- **eject**: Eject from `react-scripts`.
+- **format**: Run Prettier to format the code.
+- **lint**: Run ESLint to check for linting issues.
+- **lint:fix**: Run ESLint with the `--fix` option to fix auto-fixable issues.
+- **start**: Start the development server using `react-scripts`.
+- **test**: Run tests using `react-scripts test`.
+
+## Husky and Lint-Staged
+
+This project uses Husky and lint-staged to enforce pre-commit hooks for code formatting and linting. Commits will be rejected if they do not adhere to the defined standards.
+
+## Browserslist
+
+Defines the list of supported browsers for development and production builds.
+
+## Dependencies
+
+- `@testing-library`: Testing utilities.
+- `chart.js`, `chartjs-adapter-date-fns`, `date-fns`: Chart visualization dependencies.
+- `react`, `react-dom`, `react-scripts`: React and Create React App dependencies.
+- `react-chartjs-2`, `react-redux`, `redux`, `redux-thunk`: Additional React and Redux libraries.
+- `react-table`: Library for creating tables.
+
+## Dev Dependencies
+
+- `@typescript-eslint`: ESLint plugin for TypeScript.
+- `eslint`, `eslint-config-prettier`, `eslint-plugin-prettier`: ESLint and Prettier for code linting.
+- `husky`, `lint-staged`: Git hooks and pre-commit hook configuration.
+- `prettier`: Code formatter.
+- `typescript`: TypeScript for enhanced type checking.
+
+## License
+
+This project is licensed under the [ISC License](https://opensource.org/license/isc-license-txt/).
+
+## Contact
+
+For any questions or issues, feel free to reach out via email at [andychu006@gmail.com](mailto:andychu006@gmail.com).

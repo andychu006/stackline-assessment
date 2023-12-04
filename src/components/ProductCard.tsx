@@ -1,15 +1,15 @@
 // src/components/ProductCard.tsx
-import React from 'react'
-import './ProductCard.css' // Import the CSS file for styling
-import { colors, fonts } from '../constants/styles'
+import React from "react";
+import "./ProductCard.css"; // Import the CSS file for styling
+import { colors, fonts } from "../constants/styles";
 
 interface ProductCardProps {
   product: {
-    title: string
-    image: string
-    subtitle: string
-    tags: string[]
-  }
+    title: string;
+    image: string;
+    subtitle: string;
+    tags: string[];
+  };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -46,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

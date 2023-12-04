@@ -1,19 +1,19 @@
 // src/redux/reducers.ts
-import { Reducer } from 'redux'
-import { ActionTypes, FETCH_DATA_SUCCESS } from './actionTypes'
-import { Product } from '../utils/productData'
+import { Reducer } from "redux";
+import { ActionTypes, FETCH_DATA_SUCCESS } from "./actionTypes";
+import { Product } from "../utils/productData";
 
 export interface AppState {
   data: {
-    data: Product[]
-  }
+    data: Product[];
+  };
 }
 
 const initialState: AppState = {
   data: {
     data: [],
   },
-}
+};
 
 const rootReducer: Reducer<AppState, ActionTypes> = (
   state = initialState,
@@ -26,10 +26,10 @@ const rootReducer: Reducer<AppState, ActionTypes> = (
         data: {
           data: action.payload,
         },
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default rootReducer
+export default rootReducer;
