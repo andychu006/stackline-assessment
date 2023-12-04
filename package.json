@@ -54,6 +54,8 @@
     "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",
     "chart.js": "^4.4.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^2.30.0",
     "eslint-config-react-app": "^7.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -66,6 +68,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-redux": "^7.1.31",
     "@types/react-table": "^7.7.18",
     "@types/redux": "^3.6.0",

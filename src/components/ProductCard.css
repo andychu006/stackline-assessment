@@ -1,0 +1,50 @@
+/* src/components/ProductCard.css */
+.product-card {
+    border: 1px solid #ddd; /* Optional: Add a border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-image {
+    width: 100%; /* Ensure the image takes 100% width of its container */
+    max-height: 200px; /* Set maximum height for the image */
+    object-fit: contain; /* Maintain aspect ratio while containing within the specified height */
+  }
+  
+  .product-details {
+    text-align: center;
+    margin-top: 10px; /* Adjust margin as needed */
+  }
+  
+  .product-title {
+    font-size: 1.2em; /* Adjust font size as needed */
+  }
+  
+  .product-subtitle {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px; /* Add margin to create space between subtitle and divider */
+    border-bottom: 1px solid #ccc; /* Add a bottom border with a light gray color */
+    padding-bottom: 10px; /* Add padding to space out the text from the border */
+    font-weight: 600;
+    
+  }
+  
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Adjust gap between tags as needed */
+    justify-content: flex-start;
+    margin-left: 15px;
+  }
+  
+  .tag-button {
+    border: 1px solid #a8a8a8; /* Set border color */
+    color: #0a0a0a; /* Set text color */
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 5px 15px;
+    margin: 5px;
+  }
+  

@@ -1,50 +1,77 @@
-// src/components/Graph.tsx
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
-import { Sales } from '../utils/productData'
 import {
-  Chart as ChartJS,
+  Chart,
   LineElement,
   PointElement,
   LinearScale,
+  TimeScale,
   Title,
 } from 'chart.js'
+import 'chartjs-adapter-date-fns' // Import the date-fns adapter
+import { Sales } from '../utils/productData'
 
 // Register the scale
-ChartJS.register(LineElement, PointElement, LinearScale, Title)
+Chart.register(LineElement, PointElement, LinearScale, TimeScale, Title)
+
 interface GraphProps {
   data: Sales[]
 }
 
 const Graph: React.FC<GraphProps> = ({ data }) => {
+  useEffect(() => {
+    // Clean up the chart.js registration on component unmount
+    return () => {
+      Chart.unregister(LineElement, PointElement, LinearScale, TimeScale, Title)
+    }
+  }, [])
+
   const chartData = {
-    labels: Array.from({ length: data.length }, (_, i) => i + 1),
+    labels: data.map((sales) => new Date(sales.weekEnding)),
     datasets: [
       {
         label: 'Retail Sales Over Time',
-        data: data.map((sales) => sales.retailSales), // Update to access retailSales from each Sales object
-        fill: false,
-        borderColor: 'rgba(75,192,192,1)',
+        data: data.map((sales) => sales.retailSales),
+        fill: true,
+        borderColor: '#44a8f6',
       },
     ],
   }
 
-  const chartOptions = {
+  const chartOptions: any = {
+    backgroundColor: '#FFFFFF',
     scales: {
       x: {
-        type: 'linear' as const,
-        position: 'bottom' as const,
-        title: { display: true, text: 'Weeks' },
+        type: 'time',
+        position: 'bottom',
+        time: {
+          unit: 'month',
+          tooltipFormat: 'MMM YYYY',
+        },
+        title: { display: true, text: 'Months' },
+        grid: { display: false },
       },
       y: {
-        type: 'linear' as const,
-        position: 'left' as const,
+        type: 'linear',
+        position: 'left',
         title: { display: true, text: 'Retail Sales' },
+        grid: { color: '#E0E0E0' },
       },
     },
     plugins: {
-      title: { display: true, text: 'Retail Sales Over Time' },
-      tooltip: { mode: 'nearest' as const }, // Explicitly define the type here
+      legend: {
+        labels: {
+          backgroundColor: '#FFFFFF',
+        },
+      },
+      title: {
+        display: true,
+        text: 'Retail Sales Over Time',
+        font: { size: 16 },
+        boxWidth: 200, // Adjust the width as needed
+        backgroundColor: '#FFFFFF', // Set the background color here
+      },
+      tooltip: { mode: 'nearest' },
     },
   }
 

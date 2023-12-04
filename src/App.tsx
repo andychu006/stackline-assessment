@@ -10,6 +10,7 @@ import Graph from './components/Graph'
 import Table from './components/Table'
 import { Dispatch } from 'redux'
 import './App.css'
+import { colors } from './constants/styles'
 
 type AppProps = PropsFromRedux & {
   // Add any other props your component expects
@@ -36,21 +37,42 @@ const App: React.FC<AppProps> = ({ productData, fetchDataSuccess }) => {
   return (
     <div className="app">
       {/* Header with Stackline logo */}
-      <header className="app-header">
-        <img src="/stackline_logo.svg" alt="Stackline Logo" />
+      <header
+        className="app-header"
+        style={{ backgroundColor: colors.backgroundBlue }}
+      >
+        <img
+          src="/stackline_logo.svg"
+          alt="Stackline Logo"
+          className="app-logo"
+        />
       </header>
 
       {/* Main content layout */}
       <div className="main-content">
         {/* Left section with ProductCard */}
-        <div className="left-section">
+        <div
+          className="left-section"
+          style={{ backgroundColor: colors.backgroundGrey }}
+        >
           {productData.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard
+              key={index}
+              product={{
+                title: product.title,
+                image: product.image,
+                subtitle: product.subtitle,
+                tags: product.tags,
+              }}
+            />
           ))}
         </div>
 
         {/* Right section with Graph and Table */}
-        <div className="right-section">
+        <div
+          className="right-section"
+          style={{ backgroundColor: colors.backgroundGrey }}
+        >
           {/* Graph component */}
           <Graph data={salesData} />
 

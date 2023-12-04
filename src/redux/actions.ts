@@ -5,13 +5,14 @@ import {
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE,
 } from './actionTypes'
+import { Product } from '../utils/productData'
 
 // Define a more flexible Action type with payload
 interface ActionWithPayload<T> extends Action {
   payload: T
 }
 
-export interface FetchDataSuccessAction extends ActionWithPayload<any[]> {
+export interface FetchDataSuccessAction extends ActionWithPayload<Product[]> {
   type: typeof FETCH_DATA_SUCCESS
 }
 

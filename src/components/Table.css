@@ -1,0 +1,36 @@
+/* src/components/Table.css */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #ffffff;
+
+  }
+  
+  .table th {
+    cursor: pointer;
+    color: #77787f;
+  }
+
+  .table td {
+    color: #838181;
+  }
+  
+  .table th::after {
+    content: ' ∨';
+    color: #838181;
+  }
+  
+  .table th.sort-asc::after {
+    content: ' ∧';
+    color: #838181;
+  }
+  

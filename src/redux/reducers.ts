@@ -1,10 +1,6 @@
 // src/redux/reducers.ts
 import { Reducer } from 'redux'
-import {
-  ActionTypes,
-  FETCH_DATA_SUCCESS,
-  FetchDataSuccessAction,
-} from './actionTypes'
+import { ActionTypes, FETCH_DATA_SUCCESS } from './actionTypes'
 import { Product } from '../utils/productData'
 
 export interface AppState {
